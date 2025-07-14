@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HomePage, LoginPage, AboutPage } from './pages';
+import { HomePage, LoginPage, AboutPage, ServicesPage, ContactPage } from './pages';
 import { Comments } from './features/example-feature';
 import { Button, Modal } from './components/shared';
 
@@ -17,10 +17,14 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage />;
-      case 'login':
-        return <LoginPage />;
       case 'about':
         return <AboutPage />;
+      case 'services':
+        return <ServicesPage />;
+      case 'contact':
+        return <ContactPage />;
+      case 'login':
+        return <LoginPage />;
       default:
         return <HomePage />;
     }
@@ -52,6 +56,26 @@ function App() {
                 }`}
               >
                 About
+              </button>
+              <button
+                onClick={() => setCurrentPage('services')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  currentPage === 'services'
+                    ? 'text-primary-600 bg-primary-50'
+                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                }`}
+              >
+                Services
+              </button>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  currentPage === 'contact'
+                    ? 'text-primary-600 bg-primary-50'
+                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                }`}
+              >
+                Contact
               </button>
               <button
                 onClick={() => setCurrentPage('login')}
