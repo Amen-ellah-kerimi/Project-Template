@@ -4,12 +4,6 @@ import CommentList from './components/CommentList';
 import CommentForm from './components/CommentForm';
 import useComments from './hooks/useComments';
 
-/**
- * Comments Feature Component
- * 
- * Main component that orchestrates the entire comments feature
- * Demonstrates how to structure a complete feature module
- */
 const Comments = ({ postId, currentUserId = 'current-user' }) => {
   const {
     comments,
@@ -59,7 +53,6 @@ const Comments = ({ postId, currentUserId = 'current-user' }) => {
 
   return (
     <div className="space-y-6">
-      {/* Comment Form */}
       <div>
         <h2 className="text-xl font-semibold text-gray-900 mb-4">
           Leave a Comment
@@ -70,7 +63,6 @@ const Comments = ({ postId, currentUserId = 'current-user' }) => {
         />
       </div>
 
-      {/* Comments List */}
       <CommentList
         comments={comments}
         onLike={likeComment}

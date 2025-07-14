@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from '../../../components/shared';
 
-/**
- * CommentForm Component
- * 
- * Form for creating new comments or replies
- * Demonstrates form handling within feature modules
- */
 const CommentForm = ({
   onSubmit,
   onCancel,

@@ -32,7 +32,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Simple Navigation for Demo */}
       <nav className="bg-white shadow-sm border-b border-gray-200 mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -100,10 +99,8 @@ function App() {
         </div>
       </nav>
 
-      {/* Page Content */}
       {renderPage()}
 
-      {/* Comments Feature Modal */}
       <Modal
         isOpen={showCommentsModal}
         onClose={() => setShowCommentsModal(false)}

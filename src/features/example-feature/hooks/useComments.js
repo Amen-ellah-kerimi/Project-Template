@@ -11,7 +11,6 @@ const useComments = (postId) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock data for demonstration
   const mockComments = [
     {
       id: '1',
@@ -21,7 +20,7 @@ const useComments = (postId) => {
         name: 'Alice Johnson',
         avatar: null,
       },
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
+      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
       likes: 5,
       replies: [
         {
@@ -32,7 +31,7 @@ const useComments = (postId) => {
             name: 'Bob Smith',
             avatar: null,
           },
-          createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(), // 1 hour ago
+          createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
           likes: 2,
           replies: [],
         },
@@ -46,19 +45,17 @@ const useComments = (postId) => {
         name: 'Carol Davis',
         avatar: null,
       },
-      createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(), // 30 minutes ago
+      createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
       likes: 3,
       replies: [],
     },
   ];
 
-  // Simulate API call to fetch comments
   const fetchComments = useCallback(async () => {
     setLoading(true);
     setError(null);
     
     try {
-      // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       setComments(mockComments);
     } catch (err) {
@@ -68,7 +65,6 @@ const useComments = (postId) => {
     }
   }, [postId]);
 
-  // Add a new comment
   const addComment = useCallback(async (content) => {
     const newComment = {
       id: Date.now().toString(),
@@ -83,13 +79,11 @@ const useComments = (postId) => {
       replies: [],
     };
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));
     
     setComments(prev => [newComment, ...prev]);
   }, []);
 
-  // Add a reply to a comment
   const addReply = useCallback(async (commentId, content) => {
     const newReply = {
       id: `${commentId}-${Date.now()}`,
@@ -104,7 +98,6 @@ const useComments = (postId) => {
       replies: [],
     };
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));
 
     setComments(prev => prev.map(comment => {
@@ -118,16 +111,13 @@ const useComments = (postId) => {
     }));
   }, []);
 
-  // Like a comment
   const likeComment = useCallback(async (commentId) => {
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 200));
     
     setComments(prev => prev.map(comment => {
       if (comment.id === commentId) {
         return { ...comment, likes: comment.likes + 1 };
       }
-      // Check replies
       if (comment.replies) {
         return {
           ...comment,
@@ -142,16 +132,13 @@ const useComments = (postId) => {
     }));
   }, []);
 
-  // Delete a comment
   const deleteComment = useCallback(async (commentId) => {
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 300));
     
     setComments(prev => prev.filter(comment => {
       if (comment.id === commentId) {
         return false;
       }
-      // Remove from replies
       if (comment.replies) {
         comment.replies = comment.replies.filter(reply => reply.id !== commentId);
       }
@@ -159,7 +146,6 @@ const useComments = (postId) => {
     }));
   }, []);
 
-  // Load comments on mount
   useEffect(() => {
     fetchComments();
   }, [fetchComments]);
