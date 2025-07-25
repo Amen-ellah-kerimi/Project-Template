@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import { HomePage, LoginPage, AboutPage, ServicesPage, ContactPage } from './pages';
 import { Comments } from './features/example-feature';
 import { Button, Modal } from './components/shared';
@@ -10,25 +11,8 @@ import { Button, Modal } from './components/shared';
  * In a real application, this would use React Router for navigation
  */
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [showCommentsModal, setShowCommentsModal] = useState(false);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'about':
-        return <AboutPage />;
-      case 'services':
-        return <ServicesPage />;
-      case 'contact':
-        return <ContactPage />;
-      case 'login':
-        return <LoginPage />;
-      default:
-        return <HomePage />;
-    }
-  };
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -36,58 +20,32 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex space-x-8">
-              <button
-                onClick={() => setCurrentPage('home')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'home'
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                }`}
-              >
-                Home
-              </button>
-              <button
-                onClick={() => setCurrentPage('about')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'about'
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                }`}
-              >
-                About
-              </button>
-              <button
-                onClick={() => setCurrentPage('services')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'services'
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                }`}
-              >
-                Services
-              </button>
-              <button
-                onClick={() => setCurrentPage('contact')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'contact'
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                }`}
-              >
-                Contact
-              </button>
-              <button
-                onClick={() => setCurrentPage('login')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'login'
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
-                }`}
-              >
-                Login
-              </button>
+              <Link to="/home">
+                <button className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-primary-600 hover:bg-gray-50">
+                  Home
+                </button>
+              </Link>
+              <Link to="/about">
+                <button className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-primary-600 hover:bg-gray-50">
+                  About
+                </button>
+              </Link>
+              <Link to="/services">
+                <button className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-primary-600 hover:bg-gray-50">
+                  Services
+                </button>
+              </Link>
+              <Link to="/contact">
+                <button className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-primary-600 hover:bg-gray-50">
+                  Contact
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-primary-600 hover:bg-gray-50">
+                  Login
+                </button>
+              </Link>
             </div>
-
             <Button
               variant="outline"
               size="sm"
@@ -99,7 +57,14 @@ function App() {
         </div>
       </nav>
 
-      {renderPage()}
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
 
       <Modal
         isOpen={showCommentsModal}
